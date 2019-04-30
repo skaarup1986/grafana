@@ -185,16 +185,11 @@ export enum DataSourceStatus {
   Disconnected,
 }
 
-export interface ExploreQueryFieldProps<DSType extends DataSourceApi, TQuery extends DataQuery> {
-  datasource: DSType;
+export interface ExploreQueryFieldProps<DSType extends DataSourceApi, TQuery extends DataQuery>
+  extends QueryEditorProps<DSType, TQuery> {
   datasourceStatus: DataSourceStatus;
-  query: TQuery;
-  error?: string | JSX.Element;
-  hint?: QueryHint;
   history: any[];
-  onExecuteQuery?: () => void;
-  onQueryChange?: (value: TQuery) => void;
-  onExecuteHint?: (action: QueryFixAction) => void;
+  onHint?: (action: QueryFixAction) => void;
 }
 
 export interface ExploreStartPageProps {
