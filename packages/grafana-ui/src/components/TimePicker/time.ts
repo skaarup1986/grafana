@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import { TimeOption, TimeRange, TIME_FORMAT } from '@grafana/ui';
+import { TimeOption, TimeRange, RawTimeRange, TIME_FORMAT } from '@grafana/ui';
 
 import * as dateMath from '@grafana/ui/src/utils/datemath';
 import { describeTimeRange } from '@grafana/ui/src/utils/rangeutil';
@@ -37,8 +37,8 @@ export const stringToMoment = (
   return moment(value, TIME_FORMAT);
 };
 
-export const mapTimeRangeToRangeString = (timeRange: TimeRange): string => {
-  return describeTimeRange(timeRange.raw);
+export const mapTimeRangeToRangeString = (timeRange: RawTimeRange): string => {
+  return describeTimeRange(timeRange);
 };
 
 export const isValidTimeString = (text: string) => dateMath.isValid(text);
