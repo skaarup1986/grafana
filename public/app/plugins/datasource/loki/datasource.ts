@@ -11,6 +11,7 @@ import { formatQuery, parseQuery } from './query_utils';
 // Types
 import { PluginMeta, DataQueryRequest, SeriesData, DataQueryError } from '@grafana/ui/src/types';
 import { LokiQuery } from './types';
+import { safeStringifyValue } from 'app/core/utils/explore';
 
 export const DEFAULT_MAX_LINES = 1000;
 
@@ -91,7 +92,7 @@ export class LokiDatasource {
           if (typeof err.data === 'string') {
             error.message = err.data;
           } else if (err.data.error) {
-            error.message = err.data.error;
+            error.message = safeStringifyValue(err.data.error);
           }
         } else if (err.message) {
           error.message = err.message;

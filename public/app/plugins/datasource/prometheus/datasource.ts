@@ -17,6 +17,7 @@ import { expandRecordingRules } from './language_utils';
 import { PromQuery } from './types';
 import { DataQueryRequest, DataSourceApi, AnnotationEvent, DataQueryError } from '@grafana/ui/src/types';
 import { ExploreUrlState } from 'app/types/explore';
+import { safeStringifyValue } from 'app/core/utils/explore';
 
 export class PrometheusDatasource implements DataSourceApi<PromQuery> {
   type: string;
@@ -298,7 +299,7 @@ export class PrometheusDatasource implements DataSourceApi<PromQuery> {
       if (typeof err.data === 'string') {
         error.message = err.data;
       } else if (err.data.error) {
-        error.message = err.data.error;
+        error.message = safeStringifyValue(err.data.error);
       }
     } else if (err.message) {
       error.message = err.message;
