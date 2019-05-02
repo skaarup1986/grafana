@@ -9,7 +9,7 @@ import { logStreamToSeriesData } from './result_transformer';
 import { formatQuery, parseQuery } from './query_utils';
 
 // Types
-import { PluginMeta, DataQueryRequest, SeriesData } from '@grafana/ui/src/types';
+import { PluginMeta, DataQueryRequest, SeriesData, DataQueryError } from '@grafana/ui/src/types';
 import { LokiQuery } from './types';
 
 export const DEFAULT_MAX_LINES = 1000;
@@ -112,8 +112,10 @@ export class LokiDatasource {
       for (let i = 0; i < results.length; i++) {
         const result = results[i];
         if (result.data) {
+          const refId = queryTargets[i].refId;
           for (const stream of result.data.streams || []) {
             const seriesData = logStreamToSeriesData(stream);
+            seriesData.refId = refId;
             seriesData.meta = {
               search: queryTargets[i].regexp,
               limit: this.maxLines,
