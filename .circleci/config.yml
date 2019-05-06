@@ -578,8 +578,6 @@ workflows:
 
   build-branches-and-prs:
       jobs:
-        - end-to-end-test:
-            filters: *filter-not-release-or-master
         - build:
             filters: *filter-not-release-or-master
         - codespell:
