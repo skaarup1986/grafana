@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { GridCellProps } from 'react-virtualized';
 import { Table, Props } from './Table';
 import { ValueFormatter } from '../../utils/index';
-import { momentWrapper } from '../../utils/moment_wrapper';
+import { dateTimeType } from '../../utils/moment_wrapper';
 import { GrafanaTheme } from '../../types/theme';
 import { getValueFormat, getColorFromHexRgbOrName, Field } from '@grafana/ui';
 import { InterpolateFunction } from '../../types/panel';
@@ -96,7 +96,7 @@ export function getCellBuilder(schema: Field, style: ColumnStyle | null, props: 
         if (_.isArray(v)) {
           v = v[0];
         }
-        let date = momentWrapper(v);
+        let date = dateTimeType(v);
         if (false) {
           // TODO?????? this.props.isUTC) {
           date = date.utc();

@@ -2,7 +2,7 @@ import { TimeOption, TimeRange, TIME_FORMAT } from '@grafana/ui';
 
 import * as dateMath from '../../../../../public/app/core/utils/datemath';
 import { describeTimeRange } from '../../../../../public/app/core/utils/rangeutil';
-import { momentWrapper, DateTimeType, toUtc } from '../../utils/moment_wrapper';
+import { dateTimeType, DateTimeType, toUtc } from '../../utils/moment_wrapper';
 
 export const mapTimeOptionToTimeRange = (
   timeOption: TimeOption,
@@ -23,18 +23,18 @@ export const stringToDateTimeType = (
 ): DateTimeType => {
   if (value.indexOf('now') !== -1) {
     if (!dateMath.isValid(value)) {
-      return momentWrapper();
+      return dateTimeType();
     }
 
     const parsed = dateMath.parse(value, roundUp, timezone);
-    return parsed || momentWrapper();
+    return parsed || dateTimeType();
   }
 
   if (isTimezoneUtc) {
     return toUtc(value, TIME_FORMAT);
   }
 
-  return momentWrapper(value, TIME_FORMAT);
+  return dateTimeType(value, TIME_FORMAT);
 };
 
 export const mapTimeRangeToRangeString = (timeRange: TimeRange): string => {
