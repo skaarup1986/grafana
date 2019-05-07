@@ -1,13 +1,13 @@
 import sinon from 'sinon';
 
 import * as dateMath from 'app/core/utils/datemath';
-import moment from 'moment';
 import _ from 'lodash';
+import { momentWrapper } from '../moment_wrapper';
 
 describe('DateMath', () => {
   const spans = ['s', 'm', 'h', 'd', 'w', 'M', 'y'];
   const anchor = '2014-01-01T06:06:06.666Z';
-  const unix = moment(anchor).valueOf();
+  const unix = momentWrapper(anchor).valueOf();
   const format = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
   let clock;
 
@@ -60,8 +60,8 @@ describe('DateMath', () => {
 
     beforeEach(() => {
       clock = sinon.useFakeTimers(unix);
-      now = moment();
-      anchored = moment(anchor);
+      now = momentWrapper();
+      anchored = momentWrapper(anchor);
     });
 
     _.each(spans, span => {
@@ -87,7 +87,7 @@ describe('DateMath', () => {
 
     beforeEach(() => {
       clock = sinon.useFakeTimers(unix);
-      now = moment();
+      now = momentWrapper();
     });
 
     _.each(spans, span => {
@@ -116,17 +116,17 @@ describe('DateMath', () => {
 
   describe('relative time to date parsing', () => {
     it('should handle negative time', () => {
-      const date = dateMath.parseDateMath('-2d', moment([2014, 1, 5]));
-      expect(date.valueOf()).toEqual(moment([2014, 1, 3]).valueOf());
+      const date = dateMath.parseDateMath('-2d', momentWrapper([2014, 1, 5]));
+      expect(date.valueOf()).toEqual(momentWrapper([2014, 1, 3]).valueOf());
     });
 
     it('should handle multiple math expressions', () => {
-      const date = dateMath.parseDateMath('-2d-6h', moment([2014, 1, 5]));
-      expect(date.valueOf()).toEqual(moment([2014, 1, 2, 18]).valueOf());
+      const date = dateMath.parseDateMath('-2d-6h', momentWrapper([2014, 1, 5]));
+      expect(date.valueOf()).toEqual(momentWrapper([2014, 1, 2, 18]).valueOf());
     });
 
     it('should return false when invalid expression', () => {
-      const date = dateMath.parseDateMath('2', moment([2014, 1, 5]));
+      const date = dateMath.parseDateMath('2', momentWrapper([2014, 1, 5]));
       expect(date).toEqual(undefined);
     });
   });
