@@ -1,6 +1,6 @@
 // @ts-ignore
 import _ from 'lodash';
-import { DateTimeType, momentWrapper, toUtc, ISO_8601, isDateTimeType } from '../moment_wrapper';
+import { DateTimeType, momentWrapper, toUtc, ISO_8601, isDateTimeType } from '@grafana/ui/src/utils/moment_wrapper';
 
 const units = ['y', 'M', 'w', 'd', 'h', 'm', 's'];
 

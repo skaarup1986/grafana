@@ -2,7 +2,7 @@ import sinon from 'sinon';
 
 import * as dateMath from 'app/core/utils/datemath';
 import _ from 'lodash';
-import { momentWrapper } from '../moment_wrapper';
+import { momentWrapper } from '@grafana/ui/src/utils/moment_wrapper';
 
 describe('DateMath', () => {
   const spans = ['s', 'm', 'h', 'd', 'w', 'M', 'y'];

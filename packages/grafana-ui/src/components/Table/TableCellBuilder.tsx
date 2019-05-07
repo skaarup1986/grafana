@@ -4,10 +4,10 @@ import React, { ReactElement } from 'react';
 import { GridCellProps } from 'react-virtualized';
 import { Table, Props } from './Table';
 import { ValueFormatter } from '../../utils/index';
+import { momentWrapper } from '../../utils/moment_wrapper';
 import { GrafanaTheme } from '../../types/theme';
 import { getValueFormat, getColorFromHexRgbOrName, Field } from '@grafana/ui';
 import { InterpolateFunction } from '../../types/panel';
-import { momentWrapper } from 'app/core/moment_wrapper';
 
 export interface TableCellBuilderOptions {
   value: any;

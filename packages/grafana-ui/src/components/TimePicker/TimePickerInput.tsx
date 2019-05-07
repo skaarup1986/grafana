@@ -2,7 +2,7 @@ import React, { PureComponent, ChangeEvent } from 'react';
 import { TimeFragment, TIME_FORMAT, Input } from '@grafana/ui';
 
 import { stringToDateTimeType, isValidTimeString } from './time';
-import { isDateTimeType } from 'app/core/moment_wrapper';
+import { isDateTimeType } from '../../utils/moment_wrapper';
 
 export interface Props {
   value: TimeFragment;

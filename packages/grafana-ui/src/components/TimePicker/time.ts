@@ -2,7 +2,7 @@ import { TimeOption, TimeRange, TIME_FORMAT } from '@grafana/ui';
 
 import * as dateMath from '../../../../../public/app/core/utils/datemath';
 import { describeTimeRange } from '../../../../../public/app/core/utils/rangeutil';
-import { momentWrapper, DateTimeType, toUtc } from 'app/core/moment_wrapper';
+import { momentWrapper, DateTimeType, toUtc } from '../../utils/moment_wrapper';
 
 export const mapTimeOptionToTimeRange = (
   timeOption: TimeOption,

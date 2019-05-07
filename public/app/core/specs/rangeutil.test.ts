@@ -1,6 +1,6 @@
 import * as rangeUtil from 'app/core/utils/rangeutil';
 import _ from 'lodash';
-import { momentWrapper } from '../moment_wrapper';
+import { momentWrapper } from '@grafana/ui/src/utils/moment_wrapper';
 
 describe('rangeUtil', () => {
   describe('Can get range grouped list of ranges', () => {
